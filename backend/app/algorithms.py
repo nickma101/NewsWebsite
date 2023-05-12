@@ -38,12 +38,12 @@ Study-specific recommender
 
 
 def tolerance_study_recommender(experimental_condition, data):
-    condition1 = ["11c", "2c", "3c", "9d"]
-    condition2 = ["11a", "2a", "3c", "9d"]
-    condition3 = ["11a", "2a", "3a", "9d"]
-    condition4 = ["11c", "2d", "3d", "9d"]
-    condition5 = ["11a", "2b", "3d", "9d"]
-    condition6 = ["11a", "2b", "3b", "9d"]
+    condition1 = ["1c", "2c", "3c", "4c", "11c", "12c", "5d", "10d"]
+    condition2 = ["1a", "2a", "3b", "4c", "11c", "12c", "5c", "10d"]
+    condition3 = ["1a", "2a", "3a", "4a", "11a", "12a", "5b", "10d"]
+    condition4 = ["1c", "2c", "3d", "4d", "11d", "12d", "5d", "10d"]
+    condition5 = ["1a", "2a", "3b", "4d", "11d", "12d", "5d", "10d"]
+    condition6 = ["1a", "2a", "3b", "4b", "11b", "12b", "5b", "10d"]
     articles = []
     for article in data:
         if experimental_condition == "condition1":

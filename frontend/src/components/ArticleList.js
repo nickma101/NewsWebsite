@@ -34,6 +34,7 @@ export default function ArticleList(props) {
       <Menu size={size}>
         <MenuItem header>Nieuwslijstje.nl</MenuItem>
       </Menu>
+
       {articles}
     </Container>
   );
