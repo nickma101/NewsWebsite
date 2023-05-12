@@ -1,6 +1,11 @@
 /*
-    Recommender component that fetches articles from the backend and displays them to the user using the ArticleList
-    and Article Display Card
+    Recommender component that fetches articles from the backend and displays them to the user using the preferred
+    layout
+
+    Layout options are as follows:
+    - ArticleList is the default and presents all articles as a list in either a one- or two-column grid
+      (see ArticleList.js) for details
+    - Homepage is a customisable alternative that emulates a news websites' homepage (see ArticleHomepage.js)
 */
 
 import React from "react";

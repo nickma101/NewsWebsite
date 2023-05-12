@@ -4,7 +4,7 @@
 
 import React from "react";
 import NewsItem from "./NewsItem";
-import { Container, MenuItem, Menu } from "semantic-ui-react";
+import { Container, Grid, MenuItem, Menu } from "semantic-ui-react";
 import useWindowDimensions from "./hooks/UseWindowDimensions";
 
 export default function ArticleList(props) {
@@ -21,10 +21,6 @@ export default function ArticleList(props) {
 
   const size = determineClassName();
 
-  const articles = props.articles.map((article) => {
-    return <NewsItem article={article} key={article.id} />;
-  });
-
   return (
     <Container
       fluid
@@ -34,8 +30,14 @@ export default function ArticleList(props) {
       <Menu size={size}>
         <MenuItem header>Nieuwslijstje.nl</MenuItem>
       </Menu>
-
-      {articles}
+      <Grid divided>
+        {props.articles.map((article) => (
+          //For a 2 column grid change width from 16 to 8
+          <Grid.Column width={16}>
+            <NewsItem article={article} key={article.id} />
+          </Grid.Column>
+        ))}
+      </Grid>
     </Container>
   );
 }
