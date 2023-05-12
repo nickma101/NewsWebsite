@@ -1,0 +1,87 @@
+.title_custom_desktop {
+    font-size: 3.5vh !important;
+    margin-top: 1vh !important;
+    margin-bottom: 1vh !important;
+    border-style: none !important;
+    font-family: "Effra-Bold", Helvetica, Arial, sans-serif;
+}
+
+.articleteaser_desktop {
+    color: #454545 !important;
+    font-size: 2.5vh !important;
+    font-style: italic !important;
+    line-height: 3.5vh !important;
+    margin-top: 1vh !important;
+    margin-bottom: 1vh !important;
+    border-style: none !important;
+    font-family: "Effra-Bold", Helvetica, Arial, sans-serif;
+}
+
+.articletext_desktop {
+    border-style: none !important;
+    font-size: 2vh !important;
+    margin-bottom: 1vh !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.img_desktop {
+    height: auto !important;
+    width: auto !important;
+    border-style: none !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin-top: 2vh !important;
+    margin-bottom: 2vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.title_custom_mobile {
+    font-size: 2vh !important;
+    margin-top: 1vh !important;
+    margin-bottom: 1vh !important;
+    border-style: none !important;
+    font-family: "Effra-Bold", Helvetica, Arial, sans-serif;
+}
+
+.articleteaser_mobile {
+    color: #454545 !important;
+    font-size: 1.8vh !important;
+    font-style: italic !important;
+    line-height: 2.5vh !important;
+    margin-top: 1vh !important;
+    margin-bottom: 1vh !important;
+    border-style: none !important;
+    font-family: "Effra-Bold", Helvetica, Arial, sans-serif;
+}
+
+.articletext_mobile {
+    border-style: none !important;
+    font-size: 1.7vh !important;
+    margin-bottom: 1vh !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.img_mobile {
+    height: auto !important;
+    width: auto !important;
+    border-style: none !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin-top: 2vh !important;
+    margin-bottom: 2vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.article_menu {
+    color: #454545 !important;
+    font-size: 1.8vh !important;
+    font-family: "Effra-Bold", Helvetica, Arial, sans-serif;
+}
+
+.custom_card_article {
+    max-width: 75% !important;
+}

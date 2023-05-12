@@ -1,0 +1,16 @@
+.title_custom2 {
+    color: black !important;
+    font-size: 40px !important;
+    margin-bottom: 25px !important;
+    margin-top: 35px !important;
+    border-style: none !important;
+}
+
+.text {
+    color: black !important;
+    font-size: 22px !important;
+    line-height: 1.7 !important;
+    margin-bottom: 30px !important;
+    margin-top: 30px !important;
+    border-style: none !important;
+}

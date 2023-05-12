@@ -1,0 +1,36 @@
+.title_custom_newsfeed_mobile {
+    font-size: 2em !important;
+    color: black !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+    border-style: none !important;
+    margin-bottom: 1em !important;
+    margin-top: 0.5em !important;
+    border-style: none !important;
+}
+
+.date_newsfeed_mobile {
+    text-indent: 1em !important;
+    font-size: 18px !important;
+    font-style: italic !important;
+    color: black !important;
+    border-style: none !important;
+}
+
+.teaser_newsfeed_mobile {
+    font-style: italic !important;
+    font-size: 20px !important;
+    color: black !important;
+}
+
+.text_newsfeed_mobile {
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+    border-style: none !important;
+}
+
+.card_newsfeed_mobile {
+    width: 600px !important;
+    margin-bottom: 15px !important;
+    margin-top: 10px !important;
+}

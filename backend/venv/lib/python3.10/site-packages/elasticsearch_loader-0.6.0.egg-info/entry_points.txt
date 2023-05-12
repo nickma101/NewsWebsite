@@ -1,0 +1,3 @@
+[console_scripts]
+elasticsearch_loader = elasticsearch_loader:cli
+
