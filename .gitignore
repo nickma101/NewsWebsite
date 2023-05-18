@@ -1,0 +1,18 @@
+# Virtual Environment
+venv/
+
+#Local file to add example data for development
+add_new_amcatdata1.py
+
+#Migrations
+migrations/
+
+#Pycache
+__pycache__/
+
+#Server files
+wsgi.ini
+wsgi.py
+
+#unnecessary backup files
+old/
