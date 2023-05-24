@@ -16,7 +16,8 @@ export default function ArticleList (props) {
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight
     const relativePosition = winScroll / height
-    console.log('scrolled to', { relativePosition })
+    const time = Date.now()
+    console.log('scrolled to', { relativePosition }, 'at', { time })
   }
 
   useEffect(() => {

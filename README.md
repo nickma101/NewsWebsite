@@ -45,6 +45,28 @@ flask db migrate
 flask db upgrade
 ```
 
+5. Fire up the backend
+
+```
+flask run
+```
+
+6. Install necessary react packages
+
+```
+cd frontend
+npm i
+```
+
+7. Fire up the react frontend and python backend for local development
+
+```
+npm start
+```
+
+*Note for Mac-users: The backend runs on localhost:5000 by default. However, it may be that this port is blocked. If the
+app is not running you may want to deactivate AirPlay or change the API endpoint for the backend
+
 ## Customisation
 
 Both the front- and backend can be freely adapted.
