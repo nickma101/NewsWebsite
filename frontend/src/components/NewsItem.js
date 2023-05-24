@@ -9,20 +9,6 @@ export default function NewsItem ({ article }) {
   const navigate = useNavigate()
   const [data, setData] = useState({})
   const { width } = useWindowDimensions()
-  const [scrollPosition, setScrollPosition] = useState(0)
-
-  const handleScroll = () => {
-    const position = window.pageYOffset
-    setScrollPosition(position)
-    console.log('scrolled to', { position })
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
 
   //function to determine css styling dependent on screen size
   function determineClassName () {

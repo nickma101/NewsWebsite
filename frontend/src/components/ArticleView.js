@@ -21,7 +21,24 @@ import get_article_id from './hooks/GetArticleId'
 export default function Article ({ navigation }) {
   const [data, setData] = useState({})
   const article = data
-  const { width } = useWindowDimensions()
+  const { width, height } = useWindowDimensions()
+
+  const handleScroll = () => {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight
+    const relativePosition = winScroll / height
+    console.log('scrolled to', { relativePosition })
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   //function to determine css styling dependent on screen size
   function determineClassName () {
