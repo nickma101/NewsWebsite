@@ -30,9 +30,10 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-3. Install requirements with
+3. Navigate to backend and install requirements with
 
 ```
+cd backend
 pip install -r requirements.txt
 ```
 
