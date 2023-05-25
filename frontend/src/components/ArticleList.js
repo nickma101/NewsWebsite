@@ -14,9 +14,25 @@ import axios from 'axios'
 export default function ArticleList (props) {
   const { height, width } = useWindowDimensions()
   const [open, setOpen] = useState(false)
+  const [status, setStatus] = useState('ok')
+
+  useEffect(() => {
+    setInterval(() => {
+      const user_id = get_id()
+      const time = Date.now()
+      const API = process.env.REACT_APP_NEWSAPP_API
+      axios
+        .get(`${API == null ? 'http://localhost:5000' : API}/timer`, {
+          params: { user_id },
+        })
+        .then((res) => {
+          setStatus(res.data)
+        })
+    }, 10000)
+  }, [])
 
   const isItemDisabled = () => {
-    if (open === false) {
+    if (status === 'ok') {
       return false
     } else {
       return true
@@ -34,6 +50,7 @@ export default function ArticleList (props) {
 
   const size = determineClassName()
   const disabled = isItemDisabled()
+  console.log(disabled)
 
   return (
     <Container
@@ -45,9 +62,10 @@ export default function ArticleList (props) {
         <MenuItem header>Nieuwslijstje.nl</MenuItem>
         {disabled ? (
           <MenuItem id="qualtricsLink" position="right"
-                    onClick={() => { window.location.href = 'https://nickma101.github.io/'}}> Klik hier als je klaar
+          > Klik hier als je klaar
             bent
-            met lezen (minimum is 2 min)</MenuItem>) : (<MenuItem id="qualtricsLink" position="right"> Klik
+            met lezen (minimum is 2 min)</MenuItem>) : (<MenuItem id="qualtricsLink" position="right"
+                                                                  onClick={() => { window.location.href = 'https://nickma101.github.io/'}}> Klik
           hier als je klaar
           bent met lezen (minimum is 2 min)</MenuItem>)}
       </Menu>

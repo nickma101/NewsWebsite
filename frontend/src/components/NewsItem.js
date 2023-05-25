@@ -21,7 +21,6 @@ export default function NewsItem ({ article }) {
     if (relativePosition > max_scroll) {
       setMaxScroll(relativePosition)
     }
-    console.log(relativePosition, max_scroll)
   }
 
   useEffect(() => {

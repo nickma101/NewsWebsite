@@ -7,7 +7,6 @@
     <list default="true" id="c36bf8f2-2e11-477c-8953-f19f544ea267" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/ArticleList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ArticleList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/NewsItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NewsItem.js" afterDir="false" />
@@ -92,7 +91,7 @@
       <workItem from="1684408686899" duration="1554000" />
       <workItem from="1684410890213" duration="246000" />
       <workItem from="1684943991632" duration="16057000" />
-      <workItem from="1685021742919" duration="5616000" />
+      <workItem from="1685021742919" duration="8874000" />
     </task>
     <servers />
   </component>

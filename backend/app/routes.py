@@ -160,9 +160,10 @@ def show_article():
 @cross_origin()
 def check_timer():
     user_id = request.args.get('user_id')
-    starttime = [user.timestamp_start for user in Users.query.filter_by(user_id=user_id)]
+    starttime = [user.timestamp_start for user in Users.query.filter_by(user_id=user_id)][0]
     timestamp = datetime.utcnow()
-    if timestamp - starttime >= 120:
-        return "more than 2 minutes"
+    usage_time = timestamp - starttime
+    if usage_time.total_seconds() >= 120:
+        return "ok"
     else:
-        return "less than 2 minutes"
+        return "not ok"
