@@ -1,42 +1,41 @@
 /*
     Finish component that takes the user back to the qualtrics survey
 */
-import React, { useEffect, useState } from "react";
-import { useNavigate, createSearchParams } from "react-router-dom";
-import { Container, Header, Button, Segment } from "semantic-ui-react";
-import axios from "axios";
-import "./css/Finish.css";
-import get_id from "./hooks/GetId";
-import get_pid from "./hooks/GetPid";
-import get_cid from "./hooks/GetCid";
-import get_article_id from "./hooks/GetArticleId";
+import React, { useEffect, useState } from 'react'
+import { Container, Header, Button, Segment } from 'semantic-ui-react'
+import axios from 'axios'
+import './css/Finish.css'
+import get_id from './hooks/GetId'
+import get_pid from './hooks/GetPid'
+import get_cid from './hooks/GetCid'
+import get_article_id from './hooks/GetArticleId'
 
-export default function Finish() {
-  const [data, setData] = useState({});
+export default function Finish () {
+  const [data, setData] = useState({})
 
   useEffect(() => {
-    const user_id = get_id();
-    const pid = get_pid();
-    const cid = get_cid();
-    const article_id = get_article_id();
-    const API = process.env.REACT_APP_NEWSAPP_API;
-    const rating = new URLSearchParams(window.location.search).get("rating");
+    const user_id = get_id()
+    const pid = get_pid()
+    const cid = get_cid()
+    const article_id = get_article_id()
+    const API = process.env.REACT_APP_NEWSAPP_API
+    const rating = new URLSearchParams(window.location.search).get('rating')
     axios
-      .get(`${API == null ? "http://localhost:5000" : API}/last_rating`, {
+      .get(`${API == null ? 'http://localhost:5000' : API}/last_rating`, {
         params: { user_id, article_id, rating, pid, cid },
       })
-      .then((res) => setData(res.data[0]));
-  }, []);
+      .then((res) => setData(res.data[0]))
+  }, [])
 
   //on-click function that takes the user back to the 2nd qualtrics survey
-  function handleClick() {
-    const user_id = get_id();
-    const pid = get_pid();
-    const cid = get_cid();
-    const href1 = "https://vuass.eu.qualtrics.com";
-    const href2 = `/jfe/form/SV_3CB4AtxbiyNgSgK?user_id=${user_id}&cid=${cid}&pid=${pid}`;
-    const link = href1 + href2;
-    window.location = link;
+  function handleClick () {
+    const user_id = get_id()
+    const pid = get_pid()
+    const cid = get_cid()
+    const href1 = 'https://vuass.eu.qualtrics.com'
+    const href2 = `/jfe/form/SV_3CB4AtxbiyNgSgK?user_id=${user_id}&cid=${cid}&pid=${pid}`
+    const link = href1 + href2
+    window.location = link
   }
 
   return (
@@ -53,7 +52,7 @@ export default function Finish() {
           Klik hieronder om terug te keren naar de enquête. Er zijn nog maar een
           paar vragen.
         </p>
-        <Segment basic textAlign={"left"}>
+        <Segment basic textAlign={'left'}>
           <Button
             textAlign="center"
             content="Terug naar de enquête"
@@ -64,5 +63,5 @@ export default function Finish() {
         </Segment>
       </div>
     </Container>
-  );
+  )
 }
