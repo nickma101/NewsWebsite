@@ -6,9 +6,7 @@ import React, { useEffect, useState } from 'react'
 import NewsItem from './NewsItem'
 import { Container, Grid, MenuItem, Menu } from 'semantic-ui-react'
 import useWindowDimensions from './hooks/UseWindowDimensions'
-import { useNavigate } from 'react-router-dom'
 import get_id from './hooks/GetId'
-import get_article_id from './hooks/GetArticleId'
 import axios from 'axios'
 
 export default function ArticleList (props) {
@@ -50,7 +48,6 @@ export default function ArticleList (props) {
 
   const size = determineClassName()
   const disabled = isItemDisabled()
-  console.log(disabled)
 
   return (
     <Container

@@ -11,7 +11,6 @@ from flask_cors import cross_origin
 from . import newsapp, db, recommender
 from .database import Exposures, Selections, Reads, Users, Positions
 from datetime import datetime
-import random
 
 """
 Homepage
