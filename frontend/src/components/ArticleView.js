@@ -18,7 +18,7 @@ import useWindowDimensions from './hooks/UseWindowDimensions'
 import get_id from './hooks/GetId'
 import get_article_id from './hooks/GetArticleId'
 
-export default function Article ({ navigation }) {
+export default function Article ({}) {
   const [data, setData] = useState({})
   const article = data
   const { width, height } = useWindowDimensions()
@@ -39,7 +39,6 @@ export default function Article ({ navigation }) {
   useEffect(() => {
     const user_id = get_id()
     const API = process.env.REACT_APP_NEWSAPP_API
-    const rating = new URLSearchParams(window.location.search).get('rating')
     axios
       .get(`${API == null ? 'http://localhost:5000' : API}/timer`, {
         params: { user_id },

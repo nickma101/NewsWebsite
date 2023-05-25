@@ -7,7 +7,6 @@ import useWindowDimensions from './hooks/UseWindowDimensions'
 
 export default function NewsItem ({ article }) {
   const navigate = useNavigate()
-  const [data, setData] = useState({})
   const { width } = useWindowDimensions()
   const [max_scroll, setMaxScroll] = useState(0)
 
@@ -97,7 +96,7 @@ export default function NewsItem ({ article }) {
       <div className="newsfeed_padding">
         <Grid stretched>
           <Grid.Column width={image_width}>
-            <Container fluid className={container} style={{ 'margin-left': 0 }}>
+            <Container fluid className={container} style={{ 'marginLeft': 0 }}>
               <Card fluid>
                 <Image fluid className={image} src={image_id}/>
               </Card>

@@ -11,13 +11,11 @@ import axios from 'axios'
 
 export default function ArticleList (props) {
   const { height, width } = useWindowDimensions()
-  const [open, setOpen] = useState(false)
   const [status, setStatus] = useState('ok')
 
   useEffect(() => {
     setInterval(() => {
       const user_id = get_id()
-      const time = Date.now()
       const API = process.env.REACT_APP_NEWSAPP_API
       axios
         .get(`${API == null ? 'http://localhost:5000' : API}/timer`, {
@@ -30,11 +28,7 @@ export default function ArticleList (props) {
   }, [])
 
   const isItemDisabled = () => {
-    if (status === 'ok') {
-      return false
-    } else {
-      return true
-    }
+    return status !== 'ok'
   }
 
   //function to determine css styling dependent on screen size
@@ -53,24 +47,22 @@ export default function ArticleList (props) {
     <Container
       fluid
       className="custom_container"
-      style={{ 'margin-bottom': '3%' }}
+      style={{ 'marginBottom': '3%' }}
     >
       <Menu size={size}>
         <MenuItem header>Nieuwslijstje.nl</MenuItem>
         {disabled ? (
           <MenuItem id="qualtricsLink" position="right"
-          > Klik hier als je klaar
-            bent
-            met lezen (minimum is 2 min)</MenuItem>) : (<MenuItem id="qualtricsLink" position="right"
-                                                                  onClick={() => { window.location.href = 'https://nickma101.github.io/'}}> Klik
-          hier als je klaar
-          bent met lezen (minimum is 2 min)</MenuItem>)}
+          >Klik hier om af te sluiten (link wordt geactiveerd na x min)</MenuItem>) : (
+          <MenuItem id="qualtricsLink" position="right"
+                    onClick={() => { window.location.href = 'https://nickma101.github.io/'}}> Klik
+            hier om af te sluiten (link wordt geactiveerd na x min.)</MenuItem>)}
       </Menu>
       <Grid divided>
         {props.articles.map((article) => (
           //For a 2 column grid change width from 16 to 8
           <Grid.Column width={16}>
-            <NewsItem article={article} key={article.id}/>
+            <NewsItem key={article.id} article={article}/>
           </Grid.Column>
         ))}
       </Grid>
