@@ -37,6 +37,7 @@ class Selections(db.Model):
     position = db.Column(db.Integer, db.ForeignKey('positions.position'))
     user_id = db.Column(db.String(500), db.ForeignKey('users.user_id'))
     timestamp_selections = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    previous_scroll_rate = db.Column(db.Integer)
     title = db.Column(db.String(50))
     condition = db.Column(db.String(50))
     primary = db.Column(db.String(500), primary_key=True)

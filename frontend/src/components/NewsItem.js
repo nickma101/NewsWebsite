@@ -9,6 +9,27 @@ export default function NewsItem ({ article }) {
   const navigate = useNavigate()
   const [data, setData] = useState({})
   const { width } = useWindowDimensions()
+  const [max_scroll, setMaxScroll] = useState(0)
+
+  const handleScroll = () => {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight
+    const relativePosition = winScroll / height
+    if (relativePosition > max_scroll) {
+      setMaxScroll(relativePosition)
+    }
+    console.log(relativePosition, max_scroll)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [max_scroll])
 
   //function to determine css styling dependent on screen size
   function determineClassName () {
@@ -64,6 +85,7 @@ export default function NewsItem ({ article }) {
       article_id: get_article_id(),
       title: get_article_title(),
       condition: get_article_condition(),
+      previous_scroll_rate: new URLSearchParams(window.location.search).get('previous_scroll_rate'),
     }
     navigate({
       pathname: '/article/',

@@ -23,26 +23,6 @@ export default function ArticleList (props) {
     }
   }
 
-  console.log(isItemDisabled())
-
-  const handleScroll = () => {
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop
-    const height =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight
-    const relativePosition = winScroll / height
-    const time = Date.now()
-    console.log('scrolled to', { relativePosition }, 'at', { time })
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
   //function to determine css styling dependent on screen size
   function determineClassName () {
     if (width > 500) {
@@ -54,7 +34,6 @@ export default function ArticleList (props) {
 
   const size = determineClassName()
   const disabled = isItemDisabled()
-  console.log(disabled)
 
   return (
     <Container

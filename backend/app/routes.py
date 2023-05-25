@@ -133,7 +133,8 @@ def show_article():
         if position['article_id'] == article_id:
             position = position['position']
             break
-    # request title amd condition and determine timestamp
+    # request title, condition, previous scroll rate and determine timestamp
+    previous_scroll_rate = request.args.get('previous_scroll_rate')
     title = request.args.get('title')
     condition = request.args.get('condition')
     timestamp = datetime.utcnow()
@@ -142,6 +143,7 @@ def show_article():
                               position=position,
                               user_id=user_id,
                               timestamp_selections=timestamp,
+                              previous_scroll_rate=previous_scroll_rate,
                               title=title,
                               condition=condition,
                               primary="{}/{}/{}/{}".format(user_id,
