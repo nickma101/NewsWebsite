@@ -89,11 +89,13 @@ def get_recommendations():
         last_read = selections[-1]
         article_id = last_read['article_id']
         title = last_read['title']
+        max_scroll = request.args.get('maxScroll')
         condition = last_read['condition']
         read = Reads(article_id=article_id,
                      user_id=user_id,
                      timestamp_reads=timestamp,
                      read_title=title,
+                     max_scroll=max_scroll,
                      read_condition=condition,
                      primary="{}/{}/{}/{}".format(user_id,
                                                   article_id,
@@ -150,3 +152,15 @@ def show_article():
     db.session.commit()
     # retrieve article from backend
     return jsonify(recommender.get_article_from_backend(user_id, article_id))
+
+
+@newsapp.route('/timer', methods=["GET"])
+@cross_origin()
+def check_timer():
+    user_id = request.args.get('user_id')
+    starttime = [user.timestamp_start for user in Users.query.filter_by(user_id=user_id)]
+    timestamp = datetime.utcnow()
+    if timestamp - starttime >= 120:
+        return "more than 2 minutes"
+    else:
+        return "less than 2 minutes"

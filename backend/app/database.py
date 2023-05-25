@@ -53,6 +53,7 @@ class Reads(db.Model):
     read_condition = db.Column(db.String(50))
     user_id = db.Column(db.String(500), db.ForeignKey('users.user_id'))
     timestamp_reads = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    max_scroll = db.Column(db.Integer)
     primary = db.Column(db.String(500), primary_key=True)
 
 

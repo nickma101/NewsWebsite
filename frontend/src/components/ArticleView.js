@@ -22,6 +22,7 @@ export default function Article ({ navigation }) {
   const [data, setData] = useState({})
   const article = data
   const { width, height } = useWindowDimensions()
+  const [max_scroll, setMaxScroll] = useState(0)
 
   const handleScroll = () => {
     const winScroll =
@@ -30,15 +31,28 @@ export default function Article ({ navigation }) {
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight
     const relativePosition = winScroll / height
-    console.log('scrolled to', { relativePosition })
+    if (relativePosition > max_scroll) {
+      setMaxScroll(relativePosition)
+    }
   }
+
+  useEffect(() => {
+    const user_id = get_id()
+    const API = process.env.REACT_APP_NEWSAPP_API
+    const rating = new URLSearchParams(window.location.search).get('rating')
+    axios
+      .get(`${API == null ? 'http://localhost:5000' : API}/timer`, {
+        params: { user_id },
+      })
+      .then((res) => setData(res.data[0]))
+  }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [max_scroll])
 
   //function to determine css styling dependent on screen size
   function determineClassName () {
@@ -91,6 +105,7 @@ export default function Article ({ navigation }) {
       article_id: get_article_id(),
       condition: new URLSearchParams(window.location.search).get('condition'),
       title: new URLSearchParams(window.location.search).get('title'),
+      maxScroll: max_scroll,
     }
     navigate({
       pathname: '/recommendations',
