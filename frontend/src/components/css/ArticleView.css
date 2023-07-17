@@ -82,6 +82,10 @@
     font-family: "Effra-Bold", Helvetica, Arial, sans-serif;
 }
 
-.custom_card_article {
-    max-width: 75% !important;
+.custom_card_article_desktop {
+    max-width: 70% !important;
+}
+
+.custom_card_article_mobile {
+    max-width: 98% !important;
 }

@@ -11,7 +11,7 @@ import axios from 'axios'
 
 export default function ArticleList (props) {
   const { height, width } = useWindowDimensions()
-  const [status, setStatus] = useState('ok')
+  const [status, setStatus] = useState('not ok')
 
   useEffect(() => {
     setInterval(() => {
@@ -53,10 +53,11 @@ export default function ArticleList (props) {
         <MenuItem header>Nieuwslijstje.nl</MenuItem>
         {disabled ? (
           <MenuItem id="qualtricsLink" position="right"
-          >Klik hier om af te sluiten (link wordt na 2 min geactiveerd)</MenuItem>) : (
+          >Code: Wacht nog even</MenuItem>) : (
           <MenuItem id="qualtricsLink" position="right"
-                    onClick={() => { window.location.href = 'https://nickma101.github.io/'}}> Klik
-            hier om af te sluiten</MenuItem>)}
+            //onClick={() => { window.location.href = 'https://nickma101.github.io/'}}
+          >
+            Code: 123546798123 </MenuItem>)}
       </Menu>
       <Grid divided>
         {props.articles.map((article) => (

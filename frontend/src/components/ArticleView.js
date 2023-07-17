@@ -60,12 +60,14 @@ export default function Article ({}) {
         'title_custom_desktop',
         'articleteaser_desktop',
         'articletext_desktop',
+        'custom_card_article_desktop',
       ]
     } else {
       return [
         'title_custom_mobile',
         'articleteaser_mobile',
         'articletext_mobile',
+        'custom_card_article_mobile',
       ]
     }
   }
@@ -73,6 +75,7 @@ export default function Article ({}) {
   const title = determineClassName()[0]
   const teaser = determineClassName()[1]
   const text = determineClassName()[2]
+  const card = determineClassName()[3]
 
   //retrieving an individual article from API
   useEffect(() => {
@@ -120,7 +123,7 @@ export default function Article ({}) {
           <MenuItem header>Nieuwslijstje.nl</MenuItem>
           <MenuItem
             className="article_menu"
-            name="Terug naar de Homepage"
+            name="Homepage"
             icon="home"
             onClick={navigateToNewsfeed}
           ></MenuItem>
@@ -128,7 +131,7 @@ export default function Article ({}) {
       </div>
       <div style={{ padding: 10 }}>
         <Container centered fluid>
-          <Card centered fluid className="custom_card_article">
+          <Card centered fluid className={card}>
             <Card.Content>
               <Header textAlign="center" className={title}>
                 {article.title}
