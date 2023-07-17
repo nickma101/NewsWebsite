@@ -46,7 +46,6 @@ export default function ArticleList (props) {
   return (
     <Container
       fluid
-      className="custom_container"
       style={{ 'marginBottom': '3%' }}
     >
       <Menu size={size}>

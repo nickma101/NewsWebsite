@@ -46,8 +46,8 @@ export default function NewsItem ({ article }) {
         'newsfeed_title_mobile',
         'newsfeed_teaser_mobile',
         'newsfeed_image_mobile',
-        6,
-        10,
+        5,
+        11,
         'newsfeed_card_mobile',
         'newsfeed_container_mobile',
       ]
