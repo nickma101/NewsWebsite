@@ -53,10 +53,10 @@ export default function ArticleList (props) {
         <MenuItem header>Nieuwslijstje.nl</MenuItem>
         {disabled ? (
           <MenuItem id="qualtricsLink" position="right"
-          >Klik hier om af te sluiten</MenuItem>) : (
+          >Klik hier om af te sluiten (link wordt na 2 min geactiveerd)</MenuItem>) : (
           <MenuItem id="qualtricsLink" position="right"
                     onClick={() => { window.location.href = 'https://nickma101.github.io/'}}> Klik
-            hier om af te sluiten (link wordt geactiveerd na x min.)</MenuItem>)}
+            hier om af te sluiten</MenuItem>)}
       </Menu>
       <Grid divided>
         {props.articles.map((article) => (
