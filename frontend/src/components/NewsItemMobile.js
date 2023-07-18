@@ -61,16 +61,12 @@ export default function NewsItemMobile ({ article }) {
   return (
     <Card centered style={{ width: width }} onClick={navigateToArticle}>
       <div className="newsfeed_padding">
-        <Grid stretched>
-          <Grid.Column width={4}>
-            <Container fluid className="newsfeed_container_mobile" style={{ 'marginLeft': 0 }}>
-              <Card fluid>
-                <Image fluid className="newsfeed_image_mobile" src={image_id}/>
-              </Card>
-            </Container>
+        <Grid>
+          <Grid.Column width={3}>
+            <Image fluid centered className="newsfeed_image_mobile" src={image_id}/>
           </Grid.Column>
-          <Grid.Column width={12}>
-            <Container fluid className="newsfeed_container">
+          <Grid.Column width={13}>
+            <Container fluid className="newsfeed_container_mobile">
               <Header className="newsfeed_title_mobile">{article.title}</Header>
               <p className="newsfeed_teaser_mobile">{article.teaser}</p>
             </Container>
