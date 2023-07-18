@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Card, Image, Container, Header, MenuItem } from 'semantic-ui-react'
+import { Grid, Card, Image, Container, Header } from 'semantic-ui-react'
 import './css/NewsItem.css'
 import get_id from './hooks/GetId'
 import { useNavigate, createSearchParams } from 'react-router-dom'
-import useWindowDimensions from './hooks/UseWindowDimensions'
 
 export default function NewsItemDesktop ({ article }) {
   const navigate = useNavigate()
-  const { width } = useWindowDimensions()
   const [max_scroll, setMaxScroll] = useState(0)
 
   const handleScroll = () => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Card, Image, Container, Header, MenuItem } from 'semantic-ui-react'
+import { Grid, Card, Image, Container, Header } from 'semantic-ui-react'
 import './css/NewsItem.css'
 import get_id from './hooks/GetId'
 import { useNavigate, createSearchParams } from 'react-router-dom'
@@ -61,7 +61,7 @@ export default function NewsItemMobile ({ article }) {
   return (
     <Card centered style={{ width: width }} onClick={navigateToArticle}>
       <div className="newsfeed_padding">
-        <Grid stretched>
+        <Grid stretched style={{ width: width }}>
           <Grid.Column width={4}>
             <Container fluid className="newsfeed_container_mobile" style={{ 'marginLeft': 0 }}>
               <Card fluid>

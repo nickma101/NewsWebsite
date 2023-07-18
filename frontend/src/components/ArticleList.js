@@ -13,7 +13,7 @@ import axios from 'axios'
 export default function ArticleList (props) {
   const { height, width } = useWindowDimensions()
   const [status, setStatus] = useState('not ok')
-  const [modality, setModality] = useState()
+  const [modality, setModality] = useState('')
 
   useEffect(() => {
     setInterval(() => {
