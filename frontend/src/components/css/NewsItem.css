@@ -8,7 +8,7 @@
 
 .newsfeed_title_mobile {
     color: #00000 !important;
-    font-size: 0.7rem !important;
+    font-size: .8rem !important;
     font-family: "Effra-Bold", Helvetica, Arial, sans-serif;
     border-style: none !important;
     line-height: 0.9rem !important;
@@ -24,7 +24,7 @@
 
 .newsfeed_teaser_mobile {
     color: #454545 !important;
-    font-size: .58rem !important;
+    font-size: .65rem !important;
     font-family: Montserrat, serif;
     border-style: none !important;
     line-height: 1.3em !important;
@@ -60,7 +60,7 @@
 }
 
 .newsfeed_container_mobile {
-    height: 13vh;
+    height: 16vh;
     width: 100% !important;
 }
 
