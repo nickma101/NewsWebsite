@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Card, Image, Container, Header } from 'semantic-ui-react'
+import { Grid, Card, Image, Container, Header, MenuItem } from 'semantic-ui-react'
 import './css/NewsItem.css'
 import get_id from './hooks/GetId'
 import { useNavigate, createSearchParams } from 'react-router-dom'
 import useWindowDimensions from './hooks/UseWindowDimensions'
 
-export default function NewsItem ({ article }) {
+export default function NewsItemMobile ({ article }) {
   const navigate = useNavigate()
   const { width } = useWindowDimensions()
   const [max_scroll, setMaxScroll] = useState(0)
@@ -28,39 +28,6 @@ export default function NewsItem ({ article }) {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [max_scroll])
-
-  //function to determine css styling dependent on screen size
-  function determineClassName () {
-    if (width > 500) {
-      return [
-        'newsfeed_title_desktop ',
-        'newsfeed_teaser_desktop ',
-        'newsfeed_image_desktop',
-        5,
-        11,
-        'newsfeed_card_desktop ',
-        'newsfeed_container_desktop',
-      ]
-    } else {
-      return [
-        'newsfeed_title_mobile',
-        'newsfeed_teaser_mobile',
-        'newsfeed_image_mobile',
-        5,
-        11,
-        'newsfeed_card_mobile',
-        'newsfeed_container_mobile',
-      ]
-    }
-  }
-
-  const title = determineClassName()[0]
-  const teaser = determineClassName()[1]
-  const image = determineClassName()[2]
-  const image_width = determineClassName()[3]
-  const text_width = determineClassName()[4]
-  const card = determineClassName()[5]
-  const container = determineClassName()[6]
 
   const get_article_id = () => {
     return article.id
@@ -92,20 +59,20 @@ export default function NewsItem ({ article }) {
   }
 
   return (
-    <Card centered className={card} onClick={navigateToArticle}>
+    <Card centered style={{ width: width }} onClick={navigateToArticle}>
       <div className="newsfeed_padding">
         <Grid stretched>
-          <Grid.Column width={image_width}>
-            <Container fluid className={container} style={{ 'marginLeft': 0 }}>
+          <Grid.Column width={4}>
+            <Container fluid className="newsfeed_container_mobile" style={{ 'marginLeft': 0 }}>
               <Card fluid>
-                <Image fluid className={image} src={image_id}/>
+                <Image fluid className="newsfeed_image_mobile" src={image_id}/>
               </Card>
             </Container>
           </Grid.Column>
-          <Grid.Column width={text_width}>
+          <Grid.Column width={12}>
             <Container fluid className="newsfeed_container">
-              <Header className={title}>{article.title}</Header>
-              <p className={teaser}>{article.teaser}</p>
+              <Header className="newsfeed_title_mobile">{article.title}</Header>
+              <p className="newsfeed_teaser_mobile">{article.teaser}</p>
             </Container>
           </Grid.Column>
         </Grid>

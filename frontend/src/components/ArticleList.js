@@ -3,7 +3,8 @@
 */
 
 import React, { useEffect, useState } from 'react'
-import NewsItem from './NewsItem'
+import NewsItemDesktop from './NewsItemDesktop'
+import NewsItemMobile from './NewsItemMobile'
 import { Container, Grid, MenuItem, Menu } from 'semantic-ui-react'
 import useWindowDimensions from './hooks/UseWindowDimensions'
 import get_id from './hooks/GetId'
@@ -12,6 +13,7 @@ import axios from 'axios'
 export default function ArticleList (props) {
   const { height, width } = useWindowDimensions()
   const [status, setStatus] = useState('not ok')
+  const [modality, setModality] = useState()
 
   useEffect(() => {
     setInterval(() => {
@@ -31,6 +33,21 @@ export default function ArticleList (props) {
     return status !== 'ok'
   }
 
+  const isDesktop = () => {
+    return modality !== 'mobile'
+  }
+  const checkIfDesktop = () => {
+    if (width > 500) {
+      setModality('desktop')
+    } else {
+      setModality('mobile')
+    }
+  }
+
+  useEffect(() => {
+    checkIfDesktop()
+  }, [])
+
   //function to determine css styling dependent on screen size
   function determineClassName () {
     if (width > 500) {
@@ -42,6 +59,7 @@ export default function ArticleList (props) {
 
   const size = determineClassName()
   const disabled = isItemDisabled()
+  const desktop = isDesktop()
 
   return (
     <Container
@@ -62,7 +80,10 @@ export default function ArticleList (props) {
         {props.articles.map((article) => (
           //For a 2 column grid change width from 16 to 8
           <Grid.Column width={16}>
-            <NewsItem key={article.id} article={article}/>
+            {desktop ? (
+              <NewsItemDesktop key={article.id} article={article}/>) : (
+              <NewsItemMobile key={article.id} article={article}/>
+            )}
           </Grid.Column>
         ))}
       </Grid>

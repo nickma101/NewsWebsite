@@ -24,7 +24,7 @@
 
 .newsfeed_teaser_mobile {
     color: #454545 !important;
-    font-size: 0.5rem !important;
+    font-size: .58rem !important;
     font-family: Montserrat, serif;
     border-style: none !important;
     line-height: 1.3em !important;
@@ -50,7 +50,7 @@
     display: block !important;
     max-width: 30vh !important;
     max-height: 22vh !important;
-    width: 170% !important;
+    width: 200% !important;
     height: auto !important;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .newsfeed_container_mobile {
-    height: 14vh;
+    height: 13vh;
     width: 100% !important;
 }
 
