@@ -45,6 +45,7 @@
     max-height: 20vh !important;
     width: 100% !important;
     height: auto !important;
+    border-style: none !important;
 }
 
 .newsfeed_image_mobile {
@@ -54,6 +55,7 @@
     width: 170% !important;
     height: auto !important;
     margin-top: 1vh;
+    border-style: none !important;
 }
 
 .newsfeed_container_desktop {

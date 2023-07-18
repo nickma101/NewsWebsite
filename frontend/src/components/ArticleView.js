@@ -55,7 +55,7 @@ export default function Article ({}) {
 
   //function to determine css styling dependent on screen size
   function determineClassName () {
-    if (width > 500) {
+    if (width > 800) {
       return [
         'title_custom_desktop',
         'articleteaser_desktop',
