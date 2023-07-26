@@ -15,17 +15,22 @@ export default function ArticleList (props) {
   const [status, setStatus] = useState('not ok')
   const [modality, setModality] = useState('')
 
+  const fetchTimerData = () => {
+    const user_id = get_id()
+    const API = process.env.REACT_APP_NEWSAPP_API
+    axios
+      .get(`${API == null ? 'http://localhost:5000' : API}/timer`, {
+        params: { user_id },
+      })
+      .then((res) => {
+        setStatus(res.data)
+      })
+  }
+
   useEffect(() => {
+    fetchTimerData()
     setInterval(() => {
-      const user_id = get_id()
-      const API = process.env.REACT_APP_NEWSAPP_API
-      axios
-        .get(`${API == null ? 'http://localhost:5000' : API}/timer`, {
-          params: { user_id },
-        })
-        .then((res) => {
-          setStatus(res.data)
-        })
+      fetchTimerData()
     }, 10000)
   }, [])
 
@@ -71,7 +76,7 @@ export default function ArticleList (props) {
         {disabled ? (
           <MenuItem id="qualtricsLink" position="right"
           >Code: Wacht nog even</MenuItem>) : (
-          <MenuItem id="qualtricsLink" position="right"
+          <MenuItem id="qualtricsLink" position="right" style={{ 'userSelect': 'auto' }}
             //onClick={() => { window.location.href = 'https://nickma101.github.io/'}}
           >
             Code: 123546798123 </MenuItem>)}
