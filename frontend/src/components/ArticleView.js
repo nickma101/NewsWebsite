@@ -32,19 +32,9 @@ export default function Article ({}) {
       document.documentElement.clientHeight
     const relativePosition = winScroll / height
     if (relativePosition > max_scroll) {
-      setMaxScroll(relativePosition)
+      setMaxScroll(parseFloat(relativePosition.toFixed(2)))
     }
   }
-
-  useEffect(() => {
-    const user_id = get_id()
-    const API = process.env.REACT_APP_NEWSAPP_API
-    axios
-      .get(`${API == null ? 'http://localhost:5000' : API}/timer`, {
-        params: { user_id },
-      })
-      .then((res) => setData(res.data[0]))
-  }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -79,18 +69,17 @@ export default function Article ({}) {
 
   //retrieving an individual article from API
   useEffect(() => {
-    const user_id = new URLSearchParams(window.location.search).get('id')
-    const article_id = new URLSearchParams(window.location.search).get(
-      'article_id'
-    )
-    const condition = new URLSearchParams(window.location.search).get(
-      'condition'
-    )
-    const title = new URLSearchParams(window.location.search).get('title')
+    const params = new URLSearchParams(window.location.search)
+    const user_id = params.get('id')
+    const article_id = params.get('article_id')
+    const condition = params.get('condition')
+    const previous_scroll_rate = params.get('previous_scroll_rate')
+    const title = params.get('title')
+
     const API = process.env.REACT_APP_NEWSAPP_API
     axios
       .get(`${API == null ? 'http://localhost:5000' : API}/article`, {
-        params: { user_id, article_id, condition, title },
+        params: { user_id, article_id, condition, title, previous_scroll_rate },
       })
       .then((res) => setData(res.data[0]))
   }, [])
@@ -102,12 +91,13 @@ export default function Article ({}) {
   const navigate = useNavigate()
 
   const navigateToNewsfeed = () => {
+    const scroll = max_scroll.toString()
     const params = {
       id: get_id(),
       article_id: get_article_id(),
       condition: new URLSearchParams(window.location.search).get('condition'),
       title: new URLSearchParams(window.location.search).get('title'),
-      maxScroll: max_scroll,
+      maxScroll: scroll,
     }
     navigate({
       pathname: '/recommendations',

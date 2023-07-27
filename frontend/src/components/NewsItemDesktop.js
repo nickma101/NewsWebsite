@@ -16,7 +16,8 @@ export default function NewsItemDesktop ({ article }) {
       document.documentElement.clientHeight
     const relativePosition = winScroll / height
     if (relativePosition > max_scroll) {
-      setMaxScroll(relativePosition)
+      setMaxScroll(parseFloat(relativePosition.toFixed(2)))
+      console.log('NI:', max_scroll)
     }
   }
 
@@ -31,10 +32,6 @@ export default function NewsItemDesktop ({ article }) {
     return article.id
   }
 
-  const get_article_title = () => {
-    return article.title
-  }
-
   const get_article_condition = () => {
     return new URLSearchParams(window.location.search).get('condition')
   }
@@ -46,9 +43,9 @@ export default function NewsItemDesktop ({ article }) {
     const params = {
       id: get_id(),
       article_id: get_article_id(),
-      title: get_article_title(),
+      title: article.title,
       condition: get_article_condition(),
-      previous_scroll_rate: new URLSearchParams(window.location.search).get('previous_scroll_rate'),
+      previous_scroll_rate: max_scroll.toString(),
     }
     navigate({
       pathname: '/article/',

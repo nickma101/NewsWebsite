@@ -6,7 +6,7 @@ Handles the different routes that are necessary for the experiment: Backend API 
 - single article page where users can read and rate an article
 - Finish page that re-directs users back to Qualtrics (work in progress)
 """
-from flask import Flask, request, jsonify, redirect, url_for
+from flask import request, jsonify
 from flask_cors import cross_origin
 from . import newsapp, db, recommender
 from .database import Exposures, Selections, Reads, Users, Positions
@@ -68,13 +68,12 @@ def get_recommendations():
         articles = []
         ids = [positions.article_id for positions in Positions.query.filter_by(user_id=user_id)]
         all_articles = recommender.get_articles_from_backend(experimental_condition)
-        for id in ids:
+        for item_id in ids:
             for article in all_articles:
-                if article['id'] == id:
+                if article['id'] == item_id:
                     article = article
                     break
             articles.append(article)
-    print("articles:", articles)
     # log exposure
     exposures = Exposures(user_id=user_id,
                           timestamp_exposures=timestamp,
@@ -90,13 +89,16 @@ def get_recommendations():
         article_id = last_read['article_id']
         title = last_read['title']
         max_scroll = request.args.get('maxScroll')
+        print('Max Scroll for reads', max_scroll)
         condition = last_read['condition']
+        exposure_id = str([selection.exposure_id for selection in Selections.query.filter_by(user_id=user_id)][-1])
         read = Reads(article_id=article_id,
                      user_id=user_id,
                      timestamp_reads=timestamp,
                      read_title=title,
                      max_scroll=max_scroll,
                      read_condition=condition,
+                     exposure_id=exposure_id,
                      primary="{}/{}/{}/{}".format(user_id,
                                                   article_id,
                                                   condition,
@@ -104,6 +106,7 @@ def get_recommendations():
         db.session.add(read)
         db.session.commit()
     return jsonify(articles)
+
 
 """
 Article page where users can read and rate articles
@@ -134,8 +137,10 @@ def show_article():
             break
     # request title, condition, previous scroll rate and determine timestamp
     previous_scroll_rate = request.args.get('previous_scroll_rate')
+    print("previous scroll in newsfeed", previous_scroll_rate)
     title = request.args.get('title')
     condition = request.args.get('condition')
+    exposure_id = str([exposure.exposure_id for exposure in Exposures.query.filter_by(user_id=user_id)][-1])
     timestamp = datetime.utcnow()
     # log article selection
     article_seen = Selections(article_id=article_id,
@@ -144,6 +149,7 @@ def show_article():
                               timestamp_selections=timestamp,
                               previous_scroll_rate=previous_scroll_rate,
                               title=title,
+                              exposure_id=exposure_id,
                               condition=condition,
                               primary="{}/{}/{}/{}".format(user_id,
                                                            article_id,
@@ -159,9 +165,9 @@ def show_article():
 @cross_origin()
 def check_timer():
     user_id = request.args.get('user_id')
-    starttime = [user.timestamp_start for user in Users.query.filter_by(user_id=user_id)][0]
+    start_time = [user.timestamp_start for user in Users.query.filter_by(user_id=user_id)][0]
     timestamp = datetime.utcnow()
-    usage_time = timestamp - starttime
+    usage_time = timestamp - start_time
     if usage_time.total_seconds() >= 120:
         return "ok"
     else:

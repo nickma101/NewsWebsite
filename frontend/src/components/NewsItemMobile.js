@@ -50,7 +50,7 @@ export default function NewsItemMobile ({ article }) {
       article_id: get_article_id(),
       title: get_article_title(),
       condition: get_article_condition(),
-      previous_scroll_rate: new URLSearchParams(window.location.search).get('previous_scroll_rate'),
+      MaxScroll: max_scroll,
     }
     navigate({
       pathname: '/article/',

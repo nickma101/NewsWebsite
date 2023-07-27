@@ -37,9 +37,10 @@ class Selections(db.Model):
     position = db.Column(db.Integer, db.ForeignKey('positions.position'))
     user_id = db.Column(db.String(500), db.ForeignKey('users.user_id'))
     timestamp_selections = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    previous_scroll_rate = db.Column(db.Integer)
+    previous_scroll_rate = db.Column(db.String(50))
     title = db.Column(db.String(50))
     condition = db.Column(db.String(50))
+    exposure_id = db.Column(db.String(500))
     primary = db.Column(db.String(500), primary_key=True)
 
 
@@ -54,8 +55,9 @@ class Reads(db.Model):
     read_condition = db.Column(db.String(50))
     user_id = db.Column(db.String(500), db.ForeignKey('users.user_id'))
     timestamp_reads = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    max_scroll = db.Column(db.Integer)
+    max_scroll = db.Column(db.String(50))
     primary = db.Column(db.String(500), primary_key=True)
+    exposure_id = db.Column(db.String(500))
 
 
 '''

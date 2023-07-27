@@ -8,40 +8,74 @@
     - Homepage is a customisable alternative that emulates a news websites' homepage (see ArticleHomepage.js)
 */
 
-import React from "react";
-import ArticleList from "./ArticleList";
-import axios from "axios";
+import React, { Component } from 'react'
+import axios from 'axios'
+import ArticleList from './ArticleList'
 
-class Recommender extends React.Component {
-  state = { articles: [] };
-
-  //retrieve recommended articles from backend and warn users before leaving the page with this.onload
-  componentDidMount() {
-    window.addEventListener("beforeunload", this.onUnload);
-    const user_id = new URLSearchParams(window.location.search).get("id");
-    const article_id = new URLSearchParams(window.location.search).get(
-      "article_id"
-    );
-    const condition = new URLSearchParams(window.location.search).get(
-      "condition"
-    );
-    const API = process.env.REACT_APP_NEWSAPP_API;
-    axios
-      .get(`${API == null ? "http://localhost:5000" : API}/recommendations`, {
-        params: { user_id, article_id, condition },
-      })
-      .then((res) => {
-        const articles = res.data;
-        this.setState({ articles });
-      })
-      .catch((error) => console.log(error));
+class Recommender extends Component {
+  state = {
+    articles: [],
+    loading: true,
+    error: false,
   }
 
-  render() {
-    const id = new URLSearchParams(window.location.search).get("id");
-    if (id == null) return <div>Please provide an id here</div>;
-    return <ArticleList articles={this.state.articles} />;
+  componentDidMount () {
+    // Retrieve query parameters from the URL
+    const params = new URLSearchParams(window.location.search)
+    const user_id = params.get('id')
+    const article_id = params.get('article_id')
+    const condition = params.get('condition')
+    const maxScroll = params.get('maxScroll')
+
+    const API = process.env.REACT_APP_NEWSAPP_API || 'http://localhost:5000'
+
+    // Fetch recommended articles from the backend based on the query parameters
+    axios
+      .get(`${API}/recommendations`, {
+        params: { user_id, article_id, condition, maxScroll },
+      })
+      .then((res) => {
+        const articles = res.data
+        this.setState({ articles, loading: false, error: false })
+      })
+      .catch((error) => {
+        console.error('Error fetching articles:', error)
+        this.setState({ loading: false, error: true })
+      })
+  }
+
+  componentWillUnmount () {
+    // Remove the event listener when the component is unmounted to prevent memory leaks
+    window.removeEventListener('beforeunload', this.onUnload)
+  }
+
+  onUnload = (event) => {
+    // Display a warning message before leaving the page if the data fetching is not completed
+    if (this.state.loading) {
+      event.preventDefault()
+      event.returnValue = 'Data is still loading. Are you sure you want to leave?'
+    }
+  }
+
+  render () {
+    const id = new URLSearchParams(window.location.search).get('id')
+
+    if (!id) {
+      return <div>Please provide an id here</div>
+    }
+
+    const { articles, loading, error } = this.state
+
+    if (loading) {
+      return <div>Loading...</div>
+    }
+
+    if (error) {
+      return <div>Error occurred while fetching articles. Please try again later.</div>
+    }
+
+    return <ArticleList articles={articles}/>
   }
 }
 
-export default Recommender;
+export default Recommender
