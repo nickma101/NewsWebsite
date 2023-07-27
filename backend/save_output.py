@@ -23,6 +23,9 @@ def sql_query_to_csv(query_output, columns_to_exclude=""):
 
 databases = [Users, Exposures, Selections, Reads, Positions]
 
-query2 = Exposures.query.all()
-Exposures = sql_query_to_csv(query2)
-print(Exposures)
+for database in databases:
+   data = database.query.all()
+   csv = sql_query_to_csv(data)
+   file_name = f"{database}_output.csv"
+   with open(file_name, "w") as csv_file:
+        csv_file.write(csv)
