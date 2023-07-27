@@ -8,9 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c36bf8f2-2e11-477c-8953-f19f544ea267" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/css/ArticleView.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/css/ArticleView.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/images/i10a.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/images/i10a.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/images/i10b.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/images/i10b.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/images/i10c.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/images/i10c.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/images/i10d.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +40,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/nick/development/NewsApp",
+    "last_opened_file_path": "/home/nick/development/NewsApp_v2/frontend/src/components/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -104,7 +105,7 @@
       <workItem from="1687442359563" duration="53000" />
       <workItem from="1689601210376" duration="16035000" />
       <workItem from="1690370699431" duration="2119000" />
-      <workItem from="1690451613534" duration="3189000" />
+      <workItem from="1690451613534" duration="3495000" />
     </task>
     <servers />
   </component>
