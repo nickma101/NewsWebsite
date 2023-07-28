@@ -51,6 +51,7 @@ export default function Article ({}) {
         'articleteaser_desktop',
         'articletext_desktop',
         'custom_card_article_desktop',
+        'img_desktop',
       ]
     } else {
       return [
@@ -58,6 +59,7 @@ export default function Article ({}) {
         'articleteaser_mobile',
         'articletext_mobile',
         'custom_card_article_mobile',
+        'img_mobile',
       ]
     }
   }
@@ -66,6 +68,7 @@ export default function Article ({}) {
   const teaser = determineClassName()[1]
   const text = determineClassName()[2]
   const card = determineClassName()[3]
+  const image = determineClassName()[4]
 
   //retrieving an individual article from API
   useEffect(() => {
@@ -127,7 +130,7 @@ export default function Article ({}) {
                 {article.title}
               </Header>
               <div>
-                <Image className="img_desktop" centered src={image_id}/>
+                <Image className={image} centered src={image_id}/>
               </div>
               <Card.Content className={teaser}>{article.teaser}</Card.Content>
             </Card.Content>

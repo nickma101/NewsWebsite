@@ -68,9 +68,12 @@ const ArticleList = (props) => {
     <Container fluid style={{ marginBottom: '3%' }}>
       <Menu size={size}>
         <MenuItem header>Nieuwslijstje.nl</MenuItem>
-        <MenuItem id="qualtricsLink" position="right">
-          {disabled ? 'Code: Wacht nog even' : 'Code: 123546798123'}
-        </MenuItem>
+        {disabled? (
+        <MenuItem id="qualtricsLink" position="right"
+          >Code : Wacht nog even</MenuItem>) : (
+          <MenuItem id="qualtricsLink" position="right" style={{ 'userSelect': 'auto' }}
+          > Code: 123546798123'
+        </MenuItem>)}
       </Menu>
       <Grid divided>
         {props.articles.map((article) => (
