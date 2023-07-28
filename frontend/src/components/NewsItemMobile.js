@@ -6,8 +6,8 @@ import { useNavigate, createSearchParams } from 'react-router-dom'
 import useWindowDimensions from './hooks/UseWindowDimensions'
 
 export default function NewsItemMobile ({ article }) {
-  const navigate = useNavigate()
   const { width } = useWindowDimensions()
+  const navigate = useNavigate()
   const [max_scroll, setMaxScroll] = useState(0)
 
   const handleScroll = () => {
@@ -18,7 +18,7 @@ export default function NewsItemMobile ({ article }) {
       document.documentElement.clientHeight
     const relativePosition = winScroll / height
     if (relativePosition > max_scroll) {
-      setMaxScroll(relativePosition)
+      setMaxScroll(parseFloat(relativePosition.toFixed(2)))
     }
   }
 
@@ -33,10 +33,6 @@ export default function NewsItemMobile ({ article }) {
     return article.id
   }
 
-  const get_article_title = () => {
-    return article.title
-  }
-
   const get_article_condition = () => {
     return new URLSearchParams(window.location.search).get('condition')
   }
@@ -48,9 +44,9 @@ export default function NewsItemMobile ({ article }) {
     const params = {
       id: get_id(),
       article_id: get_article_id(),
-      title: get_article_title(),
+      title: article.title,
       condition: get_article_condition(),
-      MaxScroll: max_scroll,
+      previous_scroll_rate: max_scroll.toString(),
     }
     navigate({
       pathname: '/article/',

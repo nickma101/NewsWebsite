@@ -137,7 +137,6 @@ def show_article():
             break
     # request title, condition, previous scroll rate and determine timestamp
     previous_scroll_rate = request.args.get('previous_scroll_rate')
-    print("previous scroll in newsfeed", previous_scroll_rate)
     title = request.args.get('title')
     condition = request.args.get('condition')
     exposure_id = str([exposure.exposure_id for exposure in Exposures.query.filter_by(user_id=user_id)][-1])

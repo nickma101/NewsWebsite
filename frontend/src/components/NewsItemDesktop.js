@@ -17,7 +17,6 @@ export default function NewsItemDesktop ({ article }) {
     const relativePosition = winScroll / height
     if (relativePosition > max_scroll) {
       setMaxScroll(parseFloat(relativePosition.toFixed(2)))
-      console.log('NI:', max_scroll)
     }
   }
 
