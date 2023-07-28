@@ -25,6 +25,7 @@ class Exposures(db.Model):
     user_id = db.Column(db.String(500), db.ForeignKey('users.user_id'))
     timestamp_exposures = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     exposure_id = db.Column(db.String(500), primary_key=True)
+    exposure_number = db.Column(db.Integer)
 
 
 '''

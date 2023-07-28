@@ -26,13 +26,14 @@ class Recommender extends Component {
     const article_id = params.get('article_id')
     const condition = params.get('condition')
     const maxScroll = params.get('maxScroll')
+    const title = params.get('title')
 
     const API = process.env.REACT_APP_NEWSAPP_API || 'http://localhost:5000'
 
     // Fetch recommended articles from the backend based on the query parameters
     axios
       .get(`${API}/recommendations`, {
-        params: { user_id, article_id, condition, maxScroll },
+        params: { user_id, article_id, condition, maxScroll, title },
       })
       .then((res) => {
         const articles = res.data
