@@ -17,6 +17,7 @@ import ReactHtmlParser from 'react-html-parser'
 import useWindowDimensions from './hooks/UseWindowDimensions'
 import get_id from './hooks/GetId'
 import get_article_id from './hooks/GetArticleId'
+import { useLocation } from 'react-router-dom'
 
 export default function Article ({}) {
   const [data, setData] = useState({})
@@ -94,6 +95,8 @@ export default function Article ({}) {
   const navigate = useNavigate()
 
   const navigateToNewsfeed = () => {
+    console.log('navigated to news feed')
+    const API = process.env.REACT_APP_NEWSAPP_API
     const scroll = max_scroll.toString()
     const params = {
       id: get_id(),
@@ -102,10 +105,21 @@ export default function Article ({}) {
       title: new URLSearchParams(window.location.search).get('title'),
       maxScroll: scroll,
     }
-    navigate({
-      pathname: '/recommendations',
-      search: `?${createSearchParams(params)}`,
+    // Make a GET request to the '/log_reads' API endpoint
+    axios.get(`${API == null ? 'http://localhost:5000' : API}/logRead`, {
+      params: params,
     })
+      .then(response => {
+        // Once the POST request is successful, navigate to '/recommendations' with the parameters
+        navigate({
+          pathname: '/recommendations',
+          search: `?${createSearchParams(params)}`,
+        })
+      })
+      .catch(error => {
+        console.error('Error while making the POST request:', error)
+        // Handle any error that occurred during the POST request if necessary
+      })
   }
 
   //article display

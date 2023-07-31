@@ -12,7 +12,9 @@
       <change beforePath="$PROJECT_DIR$/backend/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Recommender.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Recommender.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ArticleView.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ArticleView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/NewsItemDesktop.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NewsItemDesktop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/NewsItemMobile.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NewsItemMobile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +113,7 @@
       <workItem from="1690527932345" duration="1900000" />
       <workItem from="1690553297988" duration="612000" />
       <workItem from="1690555971916" duration="4062000" />
-      <workItem from="1690571781417" duration="5554000" />
+      <workItem from="1690571781417" duration="23986000" />
     </task>
     <servers />
   </component>

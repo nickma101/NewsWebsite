@@ -3,6 +3,8 @@ import { Grid, Card, Image, Container, Header } from 'semantic-ui-react'
 import './css/NewsItem.css'
 import get_id from './hooks/GetId'
 import { useNavigate, createSearchParams } from 'react-router-dom'
+import axios from 'axios'
+import get_article_id from './hooks/GetArticleId'
 
 export default function NewsItemDesktop ({ article }) {
   const navigate = useNavigate()
@@ -39,6 +41,7 @@ export default function NewsItemDesktop ({ article }) {
   const image_id = require(`./images/i${id}.png`)
 
   const navigateToArticle = () => {
+    const API = process.env.REACT_APP_NEWSAPP_API
     const params = {
       id: get_id(),
       article_id: get_article_id(),
@@ -46,10 +49,20 @@ export default function NewsItemDesktop ({ article }) {
       condition: get_article_condition(),
       previous_scroll_rate: max_scroll.toString(),
     }
-    navigate({
-      pathname: '/article/',
-      search: `?${createSearchParams(params)}`,
+    axios.get(`${API == null ? 'http://localhost:5000' : API}/logSelection`, {
+      params: params,
     })
+      .then(response => {
+        // Once the selection has been successfully logged, navigate to '/recommendations' with the parameters
+        navigate({
+          pathname: '/article',
+          search: `?${createSearchParams(params)}`,
+        })
+      })
+      .catch(error => {
+        console.error('Error while logging selection:', error)
+        // Handle any error that occurred during the logging request if necessary
+      })
   }
 
   return (

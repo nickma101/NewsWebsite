@@ -42,6 +42,7 @@ class Selections(db.Model):
     title = db.Column(db.String(50))
     condition = db.Column(db.String(50))
     exposure_id = db.Column(db.String(500))
+    # same_selection_number = db.Column(db.Integer) --- see if necessary
     primary = db.Column(db.String(500), primary_key=True)
 
 
