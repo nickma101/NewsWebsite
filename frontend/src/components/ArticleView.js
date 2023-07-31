@@ -17,13 +17,13 @@ import ReactHtmlParser from 'react-html-parser'
 import useWindowDimensions from './hooks/UseWindowDimensions'
 import get_id from './hooks/GetId'
 import get_article_id from './hooks/GetArticleId'
-import { useLocation } from 'react-router-dom'
 
 export default function Article ({}) {
   const [data, setData] = useState({})
   const article = data
   const { width, height } = useWindowDimensions()
   const [max_scroll, setMaxScroll] = useState(0)
+  const [sent, setSent] = useState(false)
 
   const handleScroll = () => {
     const winScroll =
@@ -43,6 +43,38 @@ export default function Article ({}) {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [max_scroll])
+
+  const handleOnPop = () => {
+    const API = process.env.REACT_APP_NEWSAPP_API
+    const scroll = max_scroll.toString()
+    const params = {
+      id: get_id(),
+      article_id: get_article_id(),
+      condition: new URLSearchParams(window.location.search).get('condition'),
+      title: new URLSearchParams(window.location.search).get('title'),
+      maxScroll: scroll,
+    }
+    // Make a GET request to the '/log_reads' API endpoint
+    axios.get(`${API == null ? 'http://localhost:5000' : API}/logRead`, {
+      params: params,
+    }).then((res) => setData(res.data[0]))
+  }
+
+  useEffect(() => {
+    const handlePopstate = (event) => {
+      if (!sent) {
+        handleOnPop()
+        setSent(true)
+      }
+    }
+
+    window.addEventListener('popstate', handlePopstate)
+
+    return () => {
+      handlePopstate()
+      window.removeEventListener('popstate', handlePopstate)
+    }
+  }, [sent])
 
   //function to determine css styling dependent on screen size
   function determineClassName () {
@@ -95,7 +127,6 @@ export default function Article ({}) {
   const navigate = useNavigate()
 
   const navigateToNewsfeed = () => {
-    console.log('navigated to news feed')
     const API = process.env.REACT_APP_NEWSAPP_API
     const scroll = max_scroll.toString()
     const params = {

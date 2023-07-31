@@ -10,6 +10,37 @@ export default function NewsItemMobile ({ article }) {
   const { width } = useWindowDimensions()
   const navigate = useNavigate()
   const [max_scroll, setMaxScroll] = useState(0)
+  const [sent, setSent] = useState(false)
+
+  const handleOnPop = () => {
+    const API = process.env.REACT_APP_NEWSAPP_API
+    const params = {
+      id: get_id(),
+      article_id: get_article_id(),
+      title: article.title,
+      condition: get_article_condition(),
+      previous_scroll_rate: max_scroll.toString(),
+    }
+    axios.get(`${API == null ? 'http://localhost:5000' : API}/logSelection`, {
+      params: params,
+    })
+  }
+
+  useEffect(() => {
+    const handlePopstate = (event) => {
+      if (!sent & get_article_id() === '10c' | get_article_id() === '10d') {
+        handleOnPop()
+        setSent(true)
+      }
+    }
+
+    window.addEventListener('popstate', handlePopstate)
+
+    return () => {
+      handlePopstate()
+      window.removeEventListener('popstate', handlePopstate)
+    }
+  }, [sent])
 
   const handleScroll = () => {
     const winScroll =

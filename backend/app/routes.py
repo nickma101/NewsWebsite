@@ -152,7 +152,7 @@ def log_read():
     # retrieve last exposure id from database
     last_exposure_id = [exposure.exposure_id for exposure in Exposures.query.filter_by(user_id=user_id)][-1]
     times_read = len([read.exposure_id for read in Reads.query.filter_by(user_id=user_id, article_id=article_id)])
-    # check if read has been logged
+    # log read
     read = Reads(article_id=article_id,
                  user_id=user_id,
                  timestamp_reads=timestamp,
