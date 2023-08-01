@@ -5,7 +5,7 @@ import get_id from './hooks/GetId'
 import { useNavigate, createSearchParams } from 'react-router-dom'
 import axios from 'axios'
 
-export default function NewsItemDesktop ({ article }) {
+export default function NewsItemDesktop ({ article, mobile }) {
   const navigate = useNavigate()
   const [max_scroll, setMaxScroll] = useState(0)
   const [sent, setSent] = useState(false)
@@ -85,7 +85,26 @@ export default function NewsItemDesktop ({ article }) {
     })
   }
 
-  return (
+  return mobile ? (
+    <>
+      <div centered style={{ width: '100%' }} onClick={navigateToArticle}>
+        <div className="newsfeed_padding">
+          <Grid>
+            <Grid.Row width={3}>
+              <Image fluid centered className="newsfeed_image_mobile" src={image_id}/>
+            </Grid.Row>
+            <Grid.Row width={13}>
+              <Container fluid className="newsfeed_container_mobile">
+                <Header className="newsfeed_title_mobile">{article.title}</Header>
+                <p className="newsfeed_teaser_mobile">{article.teaser}</p>
+              </Container>
+            </Grid.Row>
+          </Grid>
+        </div>
+      </div>
+      <hr style={{ border: '.5px solid lightgrey' }}/>
+    </>
+  ) : (
     <Card centered className="newsfeed_card_desktop" onClick={navigateToArticle}>
       <div className="newsfeed_padding">
         <Grid stretched>

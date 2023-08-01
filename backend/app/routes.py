@@ -72,6 +72,7 @@ def get_recommendations():
                              exposure_number=1,
                              )
         db.session.add(exposure)
+        print("!!!!! First EXPOSURE was logged")
         db.session.commit()
     # if user already exists in db
     else:
@@ -84,6 +85,7 @@ def get_recommendations():
                              exposure_number=exposure_number,
                              )
         db.session.add(exposure)
+        print("!!!!! EXPOSURE was logged")
         # retrieve articles in original positions
         articles = []
         ids = [positions.article_id for positions in Positions.query.filter_by(user_id=user_id)]
@@ -160,6 +162,7 @@ def log_read():
                  read_condition=condition,
                  exposure_id=last_exposure_id,
                  primary=primary)
+    print("!!!!!!!!!!! read was logged")
     db.session.add(read)
     db.session.commit()
     return 'done'
@@ -197,6 +200,7 @@ def log_selection():
                                                         article_id,
                                                         position,
                                                         str(timestamp)))
+    print("!!!!!!!!!!! SELECTIOn was logged")
     db.session.add(selection)
     db.session.commit()
     return 'done'

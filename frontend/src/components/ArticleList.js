@@ -7,8 +7,7 @@ import axios from 'axios'
 import { Container, Menu, MenuItem, Grid } from 'semantic-ui-react'
 import useWindowDimensions from './hooks/UseWindowDimensions'
 import get_id from './hooks/GetId'
-import NewsItemDesktop from './NewsItemDesktop'
-import NewsItemMobile from './NewsItemMobile'
+import NewsItem from './NewsItem'
 
 const ArticleList = (props) => {
   const { height, width } = useWindowDimensions()
@@ -78,13 +77,7 @@ const ArticleList = (props) => {
       <Grid divided>
         {props.articles.map((article) => (
           <Grid.Column key={article.id} width={16}>
-            {desktop ? (
-              <NewsItemDesktop article={article}/>
-            ) : (<>
-                <NewsItemMobile article={article}/>
-                <hr style={{ border: '0.5px solid lightgrey' }}/>
-              </>
-            )}
+            <NewsItem article={article} mobile={!desktop}/>
           </Grid.Column>
         ))}
       </Grid>

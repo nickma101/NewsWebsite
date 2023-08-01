@@ -136,21 +136,11 @@ export default function Article ({}) {
       title: new URLSearchParams(window.location.search).get('title'),
       maxScroll: scroll,
     }
-    // Make a GET request to the '/log_reads' API endpoint
-    axios.get(`${API == null ? 'http://localhost:5000' : API}/logRead`, {
-      params: params,
+    // Once the POST request is successful, navigate to '/recommendations' with the parameters
+    navigate({
+      pathname: '/recommendations',
+      search: `?${createSearchParams(params)}`,
     })
-      .then(response => {
-        // Once the POST request is successful, navigate to '/recommendations' with the parameters
-        navigate({
-          pathname: '/recommendations',
-          search: `?${createSearchParams(params)}`,
-        })
-      })
-      .catch(error => {
-        console.error('Error while making the POST request:', error)
-        // Handle any error that occurred during the POST request if necessary
-      })
   }
 
   //article display
