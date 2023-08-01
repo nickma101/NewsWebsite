@@ -9,13 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c36bf8f2-2e11-477c-8953-f19f544ea267" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ArticleList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ArticleList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ArticleView.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ArticleView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/NewsItemDesktop.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NewsItemDesktop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/css/ArticleView.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/css/ArticleView.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +111,7 @@
       <workItem from="1690571781417" duration="32547000" />
       <workItem from="1690819524758" duration="4556000" />
       <workItem from="1690879903527" duration="2721000" />
-      <workItem from="1690884269602" duration="3129000" />
+      <workItem from="1690884269602" duration="3731000" />
     </task>
     <servers />
   </component>
