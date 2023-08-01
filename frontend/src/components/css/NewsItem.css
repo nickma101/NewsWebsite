@@ -8,10 +8,10 @@
 
 .newsfeed_title_mobile {
     color: #00000 !important;
-    font-size: 1rem !important;
+    font-size: 1.4rem !important;
     font-family: "Effra-Bold", Helvetica, Arial, sans-serif;
     border-style: none !important;
-    line-height: 1rem !important;
+    line-height: 1.6rem !important;
     margin-top: 0.1rem !important;
 }
 
@@ -25,10 +25,10 @@
 
 .newsfeed_teaser_mobile {
     color: #454545 !important;
-    font-size: .7rem !important;
+    font-size: 1rem !important;
     font-family: Montserrat, serif;
     border-style: none !important;
-    line-height: 1.2em !important;
+    line-height: 1.3em !important;
 }
 
 .newsfeed_card_desktop {
@@ -37,6 +37,7 @@
 
 .newsfeed_card_mobile {
     min-width: 350px !important;
+    border: none !important;
 }
 
 .newsfeed_image_desktop {
@@ -54,7 +55,8 @@
     max-height: 22vh !important;
     width: 170% !important;
     height: auto !important;
-    margin-top: 1vh;
+    margin-top: -1vh !important;
+    margin-bottom: -1vh !important;
     border-style: none !important;
 }
 
@@ -64,8 +66,9 @@
 }
 
 .newsfeed_container_mobile {
-    height: 17vh;
+    min-height: 15vh;
     width: 100% !important;
+    margin-bottom: 1vh;
 }
 
 .newsfeed_padding {

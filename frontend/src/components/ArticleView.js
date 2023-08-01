@@ -168,7 +168,7 @@ export default function Article ({}) {
         </Menu>
       </div>
       <div style={{ padding: 10 }}>
-        <Container centered fluid>
+        <Container centered fluid style={{ marginBottom: '3em' }}>
           <Card centered fluid className={card}>
             <Card.Content>
               <Header textAlign="center" className={title}>
@@ -184,7 +184,7 @@ export default function Article ({}) {
             </Card.Content>
           </Card>
         </Container>
-        <Menu secondary borderless size="massive" fixed="bottom">
+        <Menu secondary borderless size="massive" fixed="bottom" style={{ backgroundColor: 'white' }}>
           <MenuItem
             className="article_menu"
             name="Terug naar de Homepage"
