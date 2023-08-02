@@ -1,7 +1,7 @@
 /*
     Article  component that fetches the article a user selected and displays it to the user
 */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import {
   Container,
   Card,
@@ -23,6 +23,7 @@ export default function Article ({}) {
   const article = data
   const { width, height } = useWindowDimensions()
   const [max_scroll, setMaxScroll] = useState(0)
+  const maxScrollRef = useRef(0)
   const [sent, setSent] = useState(false)
 
   const handleScroll = () => {
@@ -32,8 +33,8 @@ export default function Article ({}) {
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight
     const relativePosition = winScroll / height
-    if (relativePosition > max_scroll) {
-      setMaxScroll(parseFloat(relativePosition.toFixed(2)))
+    if (relativePosition > maxScrollRef.current) {
+      maxScrollRef.current = parseFloat(relativePosition.toFixed(2))
     }
   }
 
@@ -46,7 +47,7 @@ export default function Article ({}) {
 
   const handleOnPop = () => {
     const API = process.env.REACT_APP_NEWSAPP_API
-    const scroll = max_scroll.toString()
+    const scroll = maxScrollRef.current.toString()
     const params = {
       id: get_id(),
       article_id: get_article_id(),

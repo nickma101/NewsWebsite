@@ -10,7 +10,9 @@
     <list default="true" id="c36bf8f2-2e11-477c-8953-f19f544ea267" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ArticleList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ArticleList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ArticleView.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ArticleView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/NewsItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NewsItem.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +116,7 @@
       <workItem from="1690819524758" duration="4556000" />
       <workItem from="1690879903527" duration="2721000" />
       <workItem from="1690884269602" duration="3974000" />
-      <workItem from="1690986765337" duration="2673000" />
+      <workItem from="1690986765337" duration="5736000" />
     </task>
     <servers />
   </component>

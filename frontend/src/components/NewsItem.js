@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Grid, Card, Image, Container, Header } from 'semantic-ui-react'
 import './css/NewsItem.css'
 import get_id from './hooks/GetId'
@@ -8,27 +8,29 @@ import axios from 'axios'
 export default function NewsItemDesktop ({ article, mobile }) {
   const navigate = useNavigate()
   const [max_scroll, setMaxScroll] = useState(0)
+  const maxScrollRef = useRef(0)
   const [sent, setSent] = useState(false)
 
   const handleOnPop = () => {
-    console.log('handling pop state event')
     const API = process.env.REACT_APP_NEWSAPP_API
     const params = {
       id: get_id(),
       article_id: get_article_id(),
       title: article.title,
       condition: get_article_condition(),
-      previous_scroll_rate: max_scroll.toString(),
+      previous_scroll_rate: maxScrollRef.current.toString(),
       pop_state: 'yes',
     }
-    axios.get(`${API == null ? 'http://localhost:5000' : API}/logSelection`, {
-      params: params,
-    })
+    if (params.article_id === new URLSearchParams(window.location.search).get('article_id')) {
+      axios.get(`${API == null ? 'http://localhost:5000' : API}/logSelection`, {
+        params: params,
+      })
+    }
   }
 
   useEffect(() => {
     const handlePopstate = (event) => {
-      if (!sent & get_article_id() === '10c' | get_article_id() === '10d') {
+      if (!sent) {
         handleOnPop()
         setSent(true)
       }
@@ -49,8 +51,8 @@ export default function NewsItemDesktop ({ article, mobile }) {
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight
     const relativePosition = winScroll / height
-    if (relativePosition > max_scroll) {
-      setMaxScroll(parseFloat(relativePosition.toFixed(2)))
+    if (relativePosition > maxScrollRef.current) {
+      maxScrollRef.current = parseFloat(relativePosition.toFixed(2))
     }
   }
 
@@ -73,14 +75,13 @@ export default function NewsItemDesktop ({ article, mobile }) {
   const image_id = require(`./images/i${id}.png`)
 
   const navigateToArticle = () => {
-    console.log('navigating to article')
     const API = process.env.REACT_APP_NEWSAPP_API
     const params = {
       id: get_id(),
       article_id: get_article_id(),
       title: article.title,
       condition: get_article_condition(),
-      previous_scroll_rate: max_scroll.toString(),
+      previous_scroll_rate: maxScrollRef.current.toString(),
       pop_state: 'no',
     }
     axios.get(`${API == null ? 'http://localhost:5000' : API}/logSelection`, {
