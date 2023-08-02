@@ -11,6 +11,7 @@ export default function NewsItemDesktop ({ article, mobile }) {
   const [sent, setSent] = useState(false)
 
   const handleOnPop = () => {
+    console.log('handling pop state event')
     const API = process.env.REACT_APP_NEWSAPP_API
     const params = {
       id: get_id(),
@@ -18,6 +19,7 @@ export default function NewsItemDesktop ({ article, mobile }) {
       title: article.title,
       condition: get_article_condition(),
       previous_scroll_rate: max_scroll.toString(),
+      pop_state: 'yes',
     }
     axios.get(`${API == null ? 'http://localhost:5000' : API}/logSelection`, {
       params: params,
@@ -71,6 +73,7 @@ export default function NewsItemDesktop ({ article, mobile }) {
   const image_id = require(`./images/i${id}.png`)
 
   const navigateToArticle = () => {
+    console.log('navigating to article')
     const API = process.env.REACT_APP_NEWSAPP_API
     const params = {
       id: get_id(),
@@ -78,11 +81,22 @@ export default function NewsItemDesktop ({ article, mobile }) {
       title: article.title,
       condition: get_article_condition(),
       previous_scroll_rate: max_scroll.toString(),
+      pop_state: 'no',
     }
-    navigate({
-      pathname: '/article',
-      search: `?${createSearchParams(params)}`,
+    axios.get(`${API == null ? 'http://localhost:5000' : API}/logSelection`, {
+      params: params,
     })
+      .then(response => {
+        // Once the selection has been successfully logged, navigate to '/recommendations' with the parameters
+        navigate({
+          pathname: '/article',
+          search: `?${createSearchParams(params)}`,
+        })
+      })
+      .catch(error => {
+        console.error('Error while logging selection:', error)
+        // Handle any error that occurred during the logging request if necessary
+      })
   }
 
   return mobile ? (
@@ -110,9 +124,7 @@ export default function NewsItemDesktop ({ article, mobile }) {
         <Grid stretched>
           <Grid.Column width={5}>
             <Container fluid className="newsfeed_container_desktop" style={{ 'marginLeft': 0 }}>
-              <Card fluid>
-                <Image fluid className="newsfeed_image_desktop" src={image_id}/>
-              </Card>
+              <Image fluid className="newsfeed_image_desktop" src={image_id}/>
             </Container>
           </Grid.Column>
           <Grid.Column width={11}>

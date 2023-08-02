@@ -162,7 +162,7 @@ def log_read():
                  read_condition=condition,
                  exposure_id=last_exposure_id,
                  primary=primary)
-    print("!!!!!!!!!!! read was logged")
+    print("!!!!!!!!!!! read was logged", article_id)
     db.session.add(read)
     db.session.commit()
     return 'done'
@@ -178,6 +178,7 @@ def log_selection():
     title = request.args.get('title')
     previous_scroll_rate = request.args.get('previous_scroll_rate')
     condition = request.args.get('condition')
+    pop_state = request.args.get('pop_state')
     # retrieve last exposure id from database
     last_exposure_id = [exposure.exposure_id for exposure in Exposures.query.filter_by(user_id=user_id)][-1]
     # determine article positions
@@ -196,11 +197,12 @@ def log_selection():
                            title=title,
                            exposure_id=last_exposure_id,
                            condition=condition,
+                           popstate=pop_state,
                            primary="{}/{}/{}/{}".format(user_id,
                                                         article_id,
                                                         position,
                                                         str(timestamp)))
-    print("!!!!!!!!!!! SELECTIOn was logged")
+    print("!!!!!!!!!!! SELECTIOn was logged", article_id, last_exposure_id, 'handle pop', pop_state)
     db.session.add(selection)
     db.session.commit()
     return 'done'
