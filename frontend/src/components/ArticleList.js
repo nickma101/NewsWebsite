@@ -71,7 +71,7 @@ const ArticleList = (props) => {
           <MenuItem id="qualtricsLink" position="right"
           >Code : Wacht nog even</MenuItem>) : (
           <MenuItem id="qualtricsLink" position="right" style={{ 'userSelect': 'auto' }}
-          > Code: 123546798123'
+          > Code:123546798123
           </MenuItem>)}
       </Menu>
       <Grid divided>
