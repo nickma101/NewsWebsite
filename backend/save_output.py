@@ -1,6 +1,6 @@
 import csv
 from app import db
-from app.database import Users, Exposures, Selections, Reads, Positions
+from app.database import Users, Exposures, Selections, Reads, Positions, Views
 
 
 def sql_query_to_csv(query_output, columns_to_exclude=""):
@@ -21,7 +21,7 @@ def sql_query_to_csv(query_output, columns_to_exclude=""):
     return csv
 
 
-databases = [Users, Exposures, Selections, Reads, Positions]
+databases = [Users, Exposures, Selections, Reads, Positions, Views]
 
 for database in databases:
    data = database.query.all()
