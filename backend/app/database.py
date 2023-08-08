@@ -73,3 +73,16 @@ class Positions(db.Model):
     user_id = db.Column(db.String(500), db.ForeignKey('users.user_id'))
     position = db.Column(db.Integer)
     primary = db.Column(db.String(500), primary_key=True)
+
+
+'''
+DB to log article id's that were visible on home feed
+'''
+
+
+class Views(db.Model):
+    article_id = db.Column(db.String(50))
+    user_id = db.Column(db.String(500), db.ForeignKey('users.user_id'))
+    timestamp_views = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    primary = db.Column(db.String(500), primary_key=True)
+    exposure_id = db.Column(db.String(500))

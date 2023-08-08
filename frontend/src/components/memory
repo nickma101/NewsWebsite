@@ -1,24 +1,77 @@
-import React, { useState, useEffect, useRef } from 'react'
+ const myRef = useRef()
+  const [intersectedArticleIds, setIntersectedArticleIds] = useState([])
+
+  useEffect(() => {
+    console.log('Updated intersectedArticleIds:', intersectedArticleIds)
+    const handleIntersection = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const articleId = article.id
+          console.log(articleId)
+          if (!intersectedArticleIds.includes(articleId)) {
+            console.log('Article', articleId, 'is intersecting:', entry.isIntersecting)
+            console.log('before addition', intersectedArticleIds)
+            setIntersectedArticleIds(prevIds => [...prevIds, articleId])
+            console.log('after addition', intersectedArticleIds)
+          }
+        }
+      })
+    }
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5,
+    }
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions)
+
+    if (myRef.current) {
+      observer.observe(myRef.current)
+      console.log('Observing article:', article.id)
+    }
+
+    return () => {
+      if (myRef.current) {
+        observer.unobserve(myRef.current)
+        console.log('Unobserving article:', article.id)
+      }
+    }
+  }, [intersectedArticleIds])
+
+
+
+
+
+
+
+
+
+  import React, { useState, useEffect, useRef } from 'react'
 import { Grid, Card, Image, Container, Header } from 'semantic-ui-react'
 import './css/NewsItem.css'
 import get_id from './hooks/GetId'
 import { useNavigate, createSearchParams } from 'react-router-dom'
 import axios from 'axios'
 
-export default function NewsItem ({ article, mobile, updateVisibleArticleIds }) {
+export default function NewsItem ({ article, mobile }) {
   const navigate = useNavigate()
   const [max_scroll, setMaxScroll] = useState(0)
   const maxScrollRef = useRef(0)
   const [sent, setSent] = useState(false)
   const [visibleArticleIds, setVisibleArticleIds] = useState([])
-  const myRef = useRef()
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const intersectedId = article.id
-          updateVisibleArticleIds(intersectedId)
+          console.log('Article visible:', intersectedId)
+          if (!visibleArticleIds.includes(intersectedId)) {
+            // Only update the state if the ID is not already in the array
+            setVisibleArticleIds((prevIds) => [...prevIds, intersectedId])
+            console.log(visibleArticleIds)
+          }
         }
       })
     })
@@ -28,8 +81,11 @@ export default function NewsItem ({ article, mobile, updateVisibleArticleIds }) 
     return () => {
       observer.disconnect()
     }
-  }, [article.id, updateVisibleArticleIds, myRef])
+  }, [article.id])
 
+  useEffect(() => {
+    console.log('Visible Article IDs:', visibleArticleIds)
+  }, [visibleArticleIds])
   const handleOnPop = () => {
     const API = process.env.REACT_APP_NEWSAPP_API
     const params = {

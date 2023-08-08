@@ -9,7 +9,7 @@ Handles the different routes that are necessary for the experiment: Backend API 
 from flask import request, jsonify
 from flask_cors import cross_origin
 from . import newsapp, db, recommender
-from .database import Exposures, Selections, Reads, Users, Positions
+from .database import Exposures, Selections, Reads, Users, Positions, Views
 from datetime import datetime
 
 """
@@ -129,10 +129,18 @@ def check_timer():
     start_time = [user.timestamp_start for user in Users.query.filter_by(user_id=user_id)][0]
     timestamp = datetime.utcnow()
     usage_time = timestamp - start_time
-    if usage_time.total_seconds() >= 120:
-        return "ok"
-    else:
+    try:
+        last_selection = [selection.article_id for selection in Selections.query.filter_by(user_id=user_id)][-1]
+    except:
+        last_selection = 'None'
+        print("!!!!!!!!!!!No last selection")
+    if last_selection == "None":
         return "not ok"
+    else:
+        if usage_time.total_seconds() >= 120:
+            return "ok"
+        else:
+            return "not ok"
 
 
 @newsapp.route('/logRead', methods=["GET"])
@@ -200,5 +208,30 @@ def log_selection():
                                                         position,
                                                         str(timestamp)))
     db.session.add(selection)
+    db.session.commit()
+    return 'done'
+
+
+@newsapp.route('/logView', methods=["GET"])
+@cross_origin()
+def log_view():
+    # process frontend input
+    timestamp = datetime.utcnow()
+    user_id = request.args.get('id')
+    article_id = request.args.get('article_id')
+    condition = request.args.get('condition')
+    primary = "{}/{}/{}/{}".format(user_id,
+                                   condition,
+                                   article_id,
+                                   str(timestamp))
+    # retrieve last exposure id from database
+    last_exposure_id = [exposure.exposure_id for exposure in Exposures.query.filter_by(user_id=user_id)][-1]
+    # log read
+    read = Views(article_id=article_id,
+                 user_id=user_id,
+                 timestamp_views=timestamp,
+                 exposure_id=last_exposure_id,
+                 primary=primary)
+    db.session.add(read)
     db.session.commit()
     return 'done'

@@ -2,17 +2,37 @@
     Article List component that returns the list of articles for the recommender class
 */
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import { Container, Menu, MenuItem, Grid } from 'semantic-ui-react'
 import useWindowDimensions from './hooks/UseWindowDimensions'
 import get_id from './hooks/GetId'
 import NewsItem from './NewsItem'
+import get_article_id from './hooks/GetArticleId'
 
 const ArticleList = (props) => {
   const { height, width } = useWindowDimensions()
   const [status, setStatus] = useState('not ok')
   const [modality, setModality] = useState('')
+  const [visibleArticleIds, setVisibleArticleIds] = useState([])
+  const myRef = useRef()
+  const [data, setData] = useState({})
+
+  const updateVisibleArticleIds = (id) => {
+    if (!visibleArticleIds.includes(id)) {
+      setVisibleArticleIds((prevIds) => [...prevIds, id])
+      const API = process.env.REACT_APP_NEWSAPP_API
+      const params = {
+        id: get_id(),
+        article_id: id,
+        condition: new URLSearchParams(window.location.search).get('condition'),
+      }
+      // Make a GET request to the '/log_reads' API endpoint
+      axios.get(`${API == null ? 'http://localhost:5000' : API}/logView`, {
+        params: params,
+      }).then((res) => setData(res.data[0]))
+    }
+  }
 
   const fetchTimerData = () => {
     const user_id = get_id()
@@ -77,7 +97,10 @@ const ArticleList = (props) => {
       <Grid divided>
         {props.articles.map((article) => (
           <Grid.Column key={article.id} width={16}>
-            <NewsItem article={article} mobile={!desktop}/>
+            <div data-article-id={article.id} ref={myRef}>
+              <NewsItem article={article} mobile={!desktop} data-article-id={article.id}
+                        updateVisibleArticleIds={updateVisibleArticleIds} myRef={myRef}/>
+            </div>
           </Grid.Column>
         ))}
       </Grid>
