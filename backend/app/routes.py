@@ -227,11 +227,11 @@ def log_view():
     # retrieve last exposure id from database
     last_exposure_id = [exposure.exposure_id for exposure in Exposures.query.filter_by(user_id=user_id)][-1]
     # log read
-    read = Views(article_id=article_id,
+    view = Views(article_id=article_id,
                  user_id=user_id,
                  timestamp_views=timestamp,
                  exposure_id=last_exposure_id,
                  primary=primary)
-    db.session.add(read)
+    db.session.add(view)
     db.session.commit()
     return 'done'
