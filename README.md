@@ -37,7 +37,7 @@ flask db migrate
 flask db upgrade
 ```
 
-5. Fire up the backend
+5. Start the backend
 
 ```
 flask run
@@ -50,7 +50,7 @@ cd frontend
 npm i
 ```
 
-7. Fire up the react frontend and python backend for local development
+7. Start the react frontend and python backend for local development
 
 ```
 npm start
