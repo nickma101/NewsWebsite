@@ -1,21 +1,13 @@
-# NewsWebsite - WORK IN PROGRESS
+# Experimental News Website 
 
-A flexible Application that allows designing different kinds of experimental news websites for academic research. Feel
-free to use and adapt it to your needs.
+Used for the study "It Ain't Easy: Using Normatively Motivated News Diversification to Facilitate Policy Support, Tolerance, and Political Participation"
 
 The app runs on a Python backend and can fetch articles either from a local database or from an external API. The
 frontend is built on React and features several options for customisation. The default setting of the app includes a
-homepage where articles are shown as a list and a reading page where users can read individual articles. In addition,
-the app also features several alternative ways of displaying content (overall homepage and individual articles). See
-below for images.
+homepage where articles are shown as a list and a reading page where users can read individual articles. 
 
-### Default Frontend
 
-### Alternative homepage
-
-### Alternative article cards
-
-## Installation
+## How to set it up
 
 1. Clone the repository
 
