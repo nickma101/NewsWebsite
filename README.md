@@ -63,14 +63,3 @@ app is not running you may want to deactivate AirPlay or change the API endpoint
 
 Both the front- and backend can be freely adapted.
 
-### Frontend
-
-Available display options include a number of different article cards as well as either a news homepage or a one- or
-two-column grid (see above).
-
-## Backend
-
-Depending on your setup you might want to change the source of the articles (e.g. access via API or from local
-database), the database model, or the recommendation logic. See here for a conceptual model of the app: [add link].
-Changes to the different elements can be made in the respective python scripts (e.g. algorithms.py for the
-recommendation logic or routes.py for which data is being logged and when)
