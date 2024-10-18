@@ -1,6 +1,7 @@
 # Experimental News Website 
 
 Used for the study "It Ain't Easy: Using Normatively Motivated News Diversification to Facilitate Policy Support, Tolerance, and Political Participation"
+(for details on the study itself, please see https://osf.io/zqw6s/).
 
 The app runs on a Python backend and can fetch articles either from a local database or from an external API. The
 frontend is built on React and features several options for customisation. The default setting of the app includes a
